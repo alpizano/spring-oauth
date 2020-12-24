@@ -18,14 +18,18 @@
             $(".authenticated").show()
         });
 
+        let login = () => {
+            window.location='/oauth2/authorization/github';
+        };
+
         var logout = function() {
             $.post("/logout", function() {
                 $("#user").html('');
                 $(".unauthenticated").show();
                 $(".authenticated").hide();
-            })
+            });
             return true;
-        }
+        };
 
         $.ajaxSetup({
             beforeSend : function(xhr, settings) {
@@ -43,11 +47,11 @@
     </script>
 </head>
 <body>
-<h1>Demo</h1>
+<h1>Spring OAuth Demo</h1>
 <div class="container"></div>
 <div class="container unauthenticated">
     <div>
-        With GitHub: <a href="/oauth2/authorization/github">click here</a>
+        With GitHub: <button onClick="login()" class="btn btn-primary">Login</button>
     </div>
     <div>
         With Google: <a href="/oauth2/authorization/google">click here</a>
